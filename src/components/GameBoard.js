@@ -3,7 +3,7 @@ const GameBoard = (props) => {
   const tiles = gameState.getTiles();
 
   return (
-    <div className="col-xl d-flex justify-content-center mt-5">
+    <div className="col-12 d-flex justify-content-center mt-5">
       <div className="row" style={{ width: "15rem" }}>
         {tiles.map((value, index) => {
           return (

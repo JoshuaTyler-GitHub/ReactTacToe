@@ -28,7 +28,7 @@ class App extends React.Component {
     this.state = {
       gameStateIndex: Number("0"),
       gameStates: [new GameState()],
-      gameWinner: "X",
+      gameWinner: null,
     };
   }
 
@@ -37,7 +37,7 @@ class App extends React.Component {
     const { gameStateIndex, gameWinner } = state;
 
     return (
-      <div className="container-sm">
+      <div className="container" style={{ maxWidth: "300px"}}>
         <div className="row">
           
           {/* Title Header */}
@@ -79,17 +79,18 @@ class App extends React.Component {
 
   handleCheckForWinner(gameState) {
     const tiles = gameState.getTiles();
-    for (let i = 0; i < winLines.length; i++) {
-      const [a, b, c] = winLines[i];
+    let isWinner = false;
+    winLines.forEach((value) => {
+      const [a, b, c] = value;
       if (
         tiles[a] && 
         tiles[a] === tiles[b] && 
         tiles[a] === tiles[c]
       ) {
-        return true;
+        isWinner = true;
       }
-    }
-    return false;
+    });
+    return isWinner;
   }
 
   handleRedo() {
